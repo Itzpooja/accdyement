@@ -1,0 +1,121 @@
+{% load static %}
+<html>
+	<head>
+		<link rel="icon" href="{% static 'acc1.jpg' %}"/>
+		<title>ACCDYEMENT</title>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.5.5/jquery.smooth-scroll.min.js"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<link rel="stylesheet" href="/static/home.css/">
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		
+		<div class="navbar">
+			<ul class="navbar-container" style="display: flex;">
+				<li><img src="{% static 'acc.png' %}" alt="" style="width: 100px; height: 60px; border-radius: 30%;"></li>
+				<li class="nav-item" style="margin-left:900px;"><a href="/" class="left-underline nav-button">Home</a></li>
+				<li class="nav-item"><a href="#section-2" class="left-underline nav-button" data-scroll>Devoloper</a></li>
+				<li class="nav-item active"><a href="/signin/" class="left-underline nav-button" data-scroll>SignIn</a></li>
+			</ul>
+		</div>
+		<div class="parallax p1" id="section-1">
+			<div class="row" style="margin: 0px;">
+				
+				<div class="col-md-8">
+					<h1 style="margin-top: 150px; color: black;font-style: oblique;text-shadow:5px 5px 10px black;margin-bottom: 0px;font-size: 70px;">
+						ACCDYEMENT
+					</h1>
+					<sub style="color: #666666;margin-left: 270px;padding-top: 0px;margin-top: 0px;font-size: 20px;">[Digitise your Business]</sub>
+					<p style="color: #47476b;margin-bottom: 0px;margin-top: 70px;font-family: 'Chelsea Market', cursive;">Are you still using the old method to manage your <strong style="font-size: 18px;color: black;">Account?</strong></p>
+					<p style="color: #47476b;font-family: 'Chelsea Market', cursive;">Then here is a solution.Here is a <b>Billing Application </b>to digitize your <b style="font-size: 18px;color: black;">Business</b>.A web ERP solution that handles all business practices for <b>Factory</b>.You can maintain <b style="font-size: 16px;color: black;">Company database,Material database,Invoicing,Billing system,Book Keeping System [ledger]</b> using this Application.</p>
+					<a href="/signup/" class="btn btn-secondary" style="background-color: black;margin-left: 260px;" >Create Your Account</a>
+				</div>
+				
+				<div class="col-md-4">
+					
+<img src="{% static 'acc1.png' %}" style="width: 100px; height: 60px; border-radius: 30%;margin-top: 140px;margin-left: 500px;">
+<div class="w3-content w3-section" style="width:500px;margin-top: 0px;margin-left: 125px;height: 500px;">
+	<img class="mySlides" src="https://www.itarian.com/assets-new/images/invoicing-and-billing-tool.png" style="width:100%">
+	<img class="mySlides" src="https://worldline.com/content/dam/worldline/images/blog/graphics/december-2016/illu-digital-billing-350x250.png" style="width:100%">  
+</div>
+<script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+	var i;
+	var x = document.getElementsByClassName("mySlides");
+	for (i = 0; i < x.length; i++) {
+		x[i].style.display = "none";  
+	}
+	myIndex++;
+	if (myIndex > x.length) {myIndex = 1}    
+	x[myIndex-1].style.display = "block";  
+	setTimeout(carousel, 2000); // Change image every 2 seconds
+}
+</script>
+
+				</div>
+
+
+		</div>
+		</div>
+		
+		<div class="parallax p2" id="section-2">
+			<div class="row" style="margin: 0px;">
+				<div class="col-md-4"></div>
+				<div class="col-md-7" style="text-align: center;justify-content: center;">
+					<p class="impact" style="font-family: Impact, Charcoal, sans-serif;color: black;font-size:40px;text-shadow: 2px 2px 8px #802000;">Meet the Developer</p>
+				<div style="background-image: url({% static 'a.jpg' %}); width: 200px;border-radius:50%;margin-left:130px;height: 200px;background-position: center;background-repeat: no-repeat;background-size: contain;background-size: cover;">
+					
+				</div>
+				<p style="color: black;margin-top: 0px;font-family: 'Roboto', sans-serif;"><i>“Make it work, make it right, make it fast.”</i></p>
+				<h2 style="color: black;font-family: 'Chelsea Market', cursive;"><b>POOJA S</b></h2>
+				<div class="col-md-1"></div>
+				<div style="display: flex;justify-content: space-between;width: 200px;margin-left: 130px;">
+					<a href="https://www.facebook.com/poojas.gowda.5494"><img style="width: 40px;height: 40px;" src="{% static 'facebook.png' %}"></a>
+					<a href="https://www.instagram.com/poojasgowda3/?igshid=12nzo956poyrr" target="_blank"><img style="width: 40px;height: 40px;" src="{% static 'instagram.png' %}"></a>
+					<a href="https://www.linkedin.com/in/pooja-s-7b606a189/"><img style="width: 40px;height: 40px;" src="{% static 'linkedin_logo.png' %}"></a>
+				</div>
+			</div>
+		</div>
+		</div>
+		
+		<footer style="height: 100px;background-color: black;display: flex;">
+				<div class="col-3">
+					<p style="margin-left:30px;"><img src="{% static 'acc.png' %}" alt="" style="width: 100px; height: 60px; border-radius: 30%;"></p>
+				</div>
+			<div class="footer-copyright" style="height:70px;background-color: black;margin-left: 200px;">
+				
+					© 2020 uplusion23, All rights reserved.
+				
+			</div>
+		</footer>
+		<script>
+		function EasyPeasyParallax() {
+	scrollPos = $(this).scrollTop();
+	$('.p1').css({
+		'background-position' : '50% ' + (-scrollPos/4)+"px"
+	});
+	$('.p2').css({
+		'background-position' : '50% ' + (-scrollPos/8)+"px"
+	});
+	$('.p3').css({
+		'background-position' : '70% ' + (-scrollPos/16)+"px"
+	});
+	$('.parallax-text').css({
+		'margin-top': (scrollPos/2)+"px",
+		'opacity': 1-(scrollPos/230)
+	});
+}
+$(document).ready(function(){
+	$(window).scroll(function() {
+		EasyPeasyParallax();
+	});
+});
+
+</script>
+	</body>
+</html>

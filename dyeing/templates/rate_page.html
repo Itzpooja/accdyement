@@ -1,0 +1,174 @@
+{% load static %}
+{% load multi %}
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/yeti/bootstrap.min.css"> 
+  <title>{{company.name}}</title>
+  <meta charset="UTF-8" />
+  <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-smooth-scroll/1.5.5/jquery.smooth-scroll.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/home.css/">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet"> 
+
+</head>
+<body style="background:url(https://coolbackgrounds.io/images/backgrounds/white/white-trianglify-b79c7e1f.jpg);background-size: cover;background-position: center;background-repeat: no-repeat;height: 800px;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+  <a class="navbar-brand" href="#">ACCDYEMENT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar">
+      <ul class="navbar-container" style="display: flex;">
+        <li style="color: white;font-size: 30px;margin-top: 3px;"><b>{{company.name}}</b></li>
+        {% if not user.is_authenticated %}
+      <li class="nav-item active">
+        <a class="nav-link" href=" "> <span class="sr-only">(current)</span></a>
+      </li>
+      {% else %}
+        <li class="nav-item" style="margin-left:1000px;font-weight: bold;font-size: 20px;"><a href="/dashboard/" class="left-underline nav-button">Dashboard</a></li>
+        <li class="nav-item" style="font-weight: bold;font-size: 20px;"><a href="/signout/" class="left-underline nav-button" data-scroll>Logout</a></li>
+        {% endif %}
+      </ul>
+    </div>
+</div>
+</nav>
+   
+	<div>
+    <button style="margin :40px;margin-left: 40px;box-shadow: 5px 5px 3px grey;"" class="btn btn-md btn-primary" data-toggle="modal" data-target="#createMaterialModal" >Add Material</button>
+  </div>
+    
+  <div class="modal" tabindex="-1" role="dialog" id="createMaterialModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Material</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form" action="/create-material/{{company.id}}/" method="POST">
+        {% csrf_token %}
+      <div class="modal-body">
+        
+          <div class="from-group">
+            <label>Material Name</label>
+            <input class="form-control" type="text" name="name">
+          </div>
+          
+          <div class="from-group">
+            <label>Sample Quantity</label>
+            <input class="form-control" type="float" name="sample_quantity">
+          </div>
+
+          <div class="from-group">
+            <label>Sample Rate</label>
+            <input class="form-control" type="float" name="sample_rate">
+          </div>
+          <div class="from-group">
+            <label>Rate</label>
+            <input class="form-control" type="float" name="rate">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          <input type="submit" value="create" class="btn btn-md btn-success">
+        </div>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
+  <div class="container">
+    <table class="table" style="border: 2px solid black;box-shadow: 5px 5px 3px grey;">
+      <thead style="border: 2px solid black;box-shadow: 5px 5px 3px grey;">
+        <td style="border-right: 1px solid black">Material</td>
+        <td style="border-right: 1px solid black">Sample Quantity</td>
+        <td style="border-right: 1px solid black">Sample rate</td>
+        <td style="border-right: 1px solid black">Rate</td>
+        <td style="border-right: 1px solid black"></td>
+        <td style="border-right: 1px solid black"></td>
+      </thead>
+      <tbody>
+        {% for material in materials %}
+        <tr>
+          <td style="border-right: 1px solid black">{{material.name}}</td>
+          <td style="border-right: 1px solid black">{{material.sample_quantity}}</td>
+          <td style="border-right: 1px solid black">₹{{material.sample_rate}}</td>
+          <td style="border-right: 1px solid black">₹{{material.rate}}</td>
+          <td style="border-right: 1px solid black"><a href="/remove/{{material.id}}/" class="btn btn-sm btn-danger">X</a></td>
+          <td><button style="margin :0px;box-shadow: 3px 3px 1px grey;" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#editMaterial-{{material.id}}">Edit Material</button></td>
+        </tr>
+        <div class="modal" tabindex="-1" role="dialog" id="editMaterial-{{material.id}}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Material</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="form" action="/edit_material/{{material.id}}/" method="POST">
+        {% csrf_token %}
+      <div class="modal-body">
+        
+          <div class="from-group">
+            <label>Material Name</label>
+            <input class="form-control" type="text" name="name" value="{{material.name}}">
+          </div>
+          
+          <div class="from-group">
+            <label>Sample Quantity</label>
+            <input class="form-control" type="float" name="sample_quantity" value="{{material.sample_quantity}}">
+          </div>
+
+          <div class="from-group">
+            <label>Sample Rate</label>
+            <input class="form-control" type="float" name="sample_rate" value="{{material.sample_rate}}">
+          </div>
+          <div class="from-group">
+            <label>Rate</label>
+            <input class="form-control" type="float" name="rate" value="{{material.rate}}">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          <input type="submit" value="Edit" class="btn btn-md btn-success">
+        </div>
+      </div>
+  </form>
+    </div>
+  </div>
+</div>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+  <form action="/quotation/{{company.slug}}/">
+  <input type="submit" value="Print Quotation" style="margin-left: 1150px;box-shadow: 5px 5px 3px grey;">
+  </form>
+
+<script>
+  $('#print-button').click(function(event) {
+  /* Act on the event */
+  var date = $('#dailySale').val();
+  window.open('data/print.php?date='+date,'name','width=600,height=400');
+});
+  
+</script>
+
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+	
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block head %}
+<title> Accdyement</title>
+{% endblock %}
+
+{% block body %}
+	<div class="container" style=" background-image: url(https://media.istockphoto.com/photos/natural-black-leather-with-perforation-in-form-of-the-squares-picture-id993106822?k=6&m=993106822&s=170667a&w=0&h=O3AI5B7X99AkC9ufF1j7CC5rHMyzDMbN9hYsTpQNa8w=); width: 350px;height: 320px;border-radius: 3%;margin-left: 550px;margin-top: 140px;">
+			
+			<div style="align-items: center;justify-content: center; color: white">
+				<h3 style="margin-top: 3em;padding: 5px">Login to your account</h3><br>
+				<form class="form" action="/signin/" method="POST">
+					{% csrf_token %}
+					
+				    <div class="form-group">
+				    	<label>Username</label>
+					   	<input type="username" name="username" class="form-control">
+				    </div>
+				    
+				    <div class="form-group">
+				    	<label>Password</label>
+					   	<input type="password" name="password" class="form-control">
+				    </div>
+				    <div class="form-group">
+					   	<input type="submit" class="btn btn-md btn-success" value="Signin">
+				    </div>
+				    <div style="margin: 10px 0;text-align: center;font-size: 16px;color: white;">
+				    	Not a member?<a style="color: #66b3ff; text-decoration: none;padding-left: 5px" href="/signup/">Signup</a>
+				    </div>
+				</form>
+			</div>
+	</div>
+	<br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

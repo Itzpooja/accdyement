@@ -1,0 +1,19 @@
+{% extends 'dashboard_base.html' %}
+
+{% block nav-content %}
+<br>
+<button class="btn btn-md btn-primary" data-toggle="modal" data-target="#createCompanyModal" style="box-shadow: 5px 5px 3px grey;">Create Company</button>
+		<div class="d-flex" style="margin-top: 30px;">
+		{% for company in company %}
+		<div class="card" style="width: 18rem; margin-right: 15px;box-shadow: 5px 5px 3px grey;">
+			
+			<div class="card-body">
+			<h5 class="card-title"><strong>{{company.name}}</strong></h5>
+			<a href="/rate-page/{{company.id}}" class=" primary">View Rate</a><br>
+			<a href="/order-page/{{company.slug}}" class="primary">Add Orders</a>
+	</div>
+</div>
+		{% endfor %}
+		</div>
+
+{% endblock %}

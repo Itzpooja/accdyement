@@ -1,0 +1,96 @@
+{% load static %}
+{% load multi %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+	<title>Bill</title>
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/yeti/bootstrap.min.css"> 
+	<style>
+		@page {
+			size: letter portrait;
+			@frame content_frame {
+			left: 30pt;
+			right: 30pt;
+			width: 545pt;
+			top: 30pt;
+			bottom: 30pt;
+			height: 710pt;
+			-pdf-frame-border: 1; /* for debugging the layout */
+			}
+			}
+
+		.table { 
+			-pdf-keep-with-next: true;
+		border: 1;
+		border-bottom: 1px solid black;
+		 }
+	</style>
+</head>
+<body style="border-color: black;border-left-color:black;">
+	<div>
+	<div>
+		<h1 style="font-weight: bold;text-align: center;font-size: 20px;padding-top:10px;margin-bottom: 0px;padding-bottom: 0px;">Hanuman Dyeing</h1>
+		<p style="text-align: center;margin-top: 0px;padding-top: 0px;">#1568,4th 'T'Block,Banashankari 6th Stage,<br>Thalaghattapura Post,Bangalore-560062</p>
+		
+		<h3 style="text-align: center;font-size: 15px;">Quotation</h3>
+		<p style="text-align: left; margin-left: 50px;">To: {{company.name}}<br> 
+						{{company.address}}</p>
+
+		<h2 style="margin-left:50px;margin-bottom: 0px;padding-bottom: 0px;">Bill No:{{bill_no}}</h2>
+	<div style="margin-left: 65px;padding: 0px;margin-top: 0px;">
+	Refno:
+	{% for i in q %}
+	{{i}}
+	{% endfor %}
+</div>
+<div>
+	<table style="margin-left: 50px;border-bottom-color:black;border-bottom-style: solid;border-left-color:black;border-left-style: solid;border-right-color:black;border-right-style: solid;border-top-color:black;border-top-style: solid;padding: 1px;width: 700px;">
+			<tr>
+				<td style="font-size: 15px;border-bottom-color:black;border-bottom-style: solid;">Material</th>
+				<td style="font-size: 15px;">Color</th>
+				<td style="font-size: 15px;">Mtr/pcs</th>
+				<td style="font-size: 15px;">Rate</th>
+				<td style="font-size: 15px;">Cost</th>
+			</tr>
+			{% for i in order %}
+			<tr>
+				
+				<td>{{i.material.name}}</td>
+				<td>{{i.color}}</td>
+				<td>{{i.quantity}}</td>
+				{% if i.quantity < i.material.sample_quantity %}
+				<td>{{i.material.sample_rate}}</td>
+				{% else %}
+				<td>{{i.material.rate}}</td>
+				 {% endif %}
+				 {% if i.quantity < i.material.sample_quantity %}
+				 <td>{{i.material.sample_rate}}</td>
+				 {% else %}
+				 <td>{{ i.quantity | multiply:i.material.rate }}</td>
+				 {% endif %}
+
+			</tr>
+			{% endfor %}
+
+			</table>
+		</div>
+			<div style="margin-left: 580px;margin-top: 10px;">
+	<label><strong style="font-size: 15px;">Total:{{total}}</strong></label><br>
+				<label style="margin-left: 50px;font-size: 15px;"><strong>gst:{{gst}}</strong></label><br>
+				<label style="margin-left: 850px;font-size: 15px;"><strong>cgst:{{gst}}</strong></label><br>
+				<label style="margin-left: 850px;font-size: 15px;"><strong>amount:{{amount}}</strong></label>
+			</div><br>
+	<br><br>
+	<p style="margin: 10px">
+		Thanks & regards,
+	</p>
+	<p style="margin: 0px;margin-left: 10px;">From Hanuman Dyeing</p>
+	<p style="margin: 0px;margin-left: 10px;">Suresh.B.T</p>
+	<p style="margin: 0px;margin-left: 10px;">Ph no:9845939753</p>
+	</div>
+		</div>
+	</td>
+
+</body>
+</html>

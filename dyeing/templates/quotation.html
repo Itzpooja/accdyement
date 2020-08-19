@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+  <title>Quotation</title>
+  <link rel="stylesheet" type="text/css" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+</head>
+<body>
+  <div>
+    <h1 style="font-weight: bold;text-align: center;">Hanuman Dyeing</h1>
+    <p style="text-align: center;">#1568,4th 'T'Block,Banashankari 6th Stage,<br>Thalaghattapura Post,Bangalore-560062</p>
+    <hr>
+    <h3 style="text-align: center;">Quotation</h3>
+    <p style="text-align: left; margin-left: 50px;">To: {{company.name}}<br> 
+            {{company.address}}</p>
+
+    <p style="text-align: left; margin-left: 60px;margin-top: 20px;"><strong>Dear sir,<br>You recently requested pricing information from our company,Here is our quote:</strong></p>
+    <table style="align-content: center;margin-left: 50px;">
+      <tr>
+        <td><b>Material</b></th>
+        <td><b>Sample Quantity</b></th>
+        <td><b>Sample rate</b></th>
+        <td><b>Rate</b></th>
+      </tr>
+      {% for i in materials%}
+      <tr>
+        
+        <td>{{i.name}}</td>
+        <td>{{i.sample_quantity}}</td>
+        <td>{{i.sample_rate}}</td>
+        <td>{{i.rate}}</td>
+
+      </tr>
+      {% endfor %}
+
+      </table>
+      <p style="margin: 10px">Thank you for giving us the opportunity to bid for your business,As always,it's a pleasure doing business with you.We look forward to complete your order to your satisfaction.</p>
+  <br><br>
+  <p style="margin: 10px">
+    Thanks & regards,
+  </p>
+  <p style="margin: 0px;margin-left: 10px;">From Hanuman Dyeing</p>
+  <p style="margin: 0px;margin-left: 10px;">Suresh.B.T</p>
+  <p style="margin: 0px;margin-left: 10px;">Ph no:9845939753</p>
+  </div>
+    </div>
+
+</body>
+</html>
